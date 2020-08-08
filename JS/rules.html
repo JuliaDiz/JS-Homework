@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fight Club</title>
+  </head>
+
+  <body>
+    <div id="content"></div>
+    <h1>Правила бойцовского клуба</h1>
+    <div id="wrap">
+      <div class="rules rule1">
+        <h2></br></br>Первое правило Бойцовского клуба.</h2>
+        <p>Никому не рассказывать о Бойцовском клубе.</p>
+      </div>
+      <div class="rules rule2">
+        <h2></br></br>Второе правило Бойцовского клуба.</h2>
+        <p>Никогда никому не рассказывать о Бойцовском клубе.</p>
+      </div>
+      <div class="rules rule3">
+        <h2></br></br>Третье правило Бойцовского клуба.</h2>
+        <p>В схватке участвуют только двое.</p>
+      </div>
+      <div class="rules rule4">
+        <h2></br></br>Четвертое правило Бойцовского клуба.</h2>
+        <p>Не более одного поединка за один раз.</p>
+      </div>
+
+      <div class="rules rule5">
+        <h2></br></br>Пятое правило Бойцовского клуба.</h2>
+        <p>Бойцы сражаются без обуви и голые по пояс.</p>
+      </div>
+      <div class="rules rule6">
+        <h2></br></br>Шестое правило Бойцовского клуба.</h2>
+        <p>Поединок продолжается столько, сколько потребуется.</p>
+      </div>
+      <div class="rules rule7">
+        <h2></br></br>Седьмое правило Бойцовского клуба.</h2>
+        <p>
+          Если противник потерял сознание или делает вид, что потерял, или
+          говорит «Хватит» — поединок окончен.
+        </p>
+      </div>
+      <div class="rules rule8">
+        <h2></br></br>Восьмое и последнее правило Бойцовского клуба.</h2>
+        <p>Новичок обязан принять бой.</p>
+      </div>
+    </div>
+    <style>
+      .test {
+        background-color: rgb(255, 176, 147);
+        margin-right: 20px;
+        width: 300px;
+      }
+    </style>
+    <script>
+      // --создать скрипт, который берет считывает на странице(rules.html) текст и делает сбоку меню - оглавление по всем заголовкам которые есть в тексте.
+      // При клике на пункт оглавления вы должны отправляться к этому пункту в тексте
+      let oglavlenie = document.createElement("div");
+      let ul = document.createElement("ul");
+      let allDiv = document.createElement("div");
+      let zaglavie = document.getElementsByTagName("h1");
+      let osnovnoiContent = document.getElementById("wrap");
+      let glavnContainer = document.getElementById("content");
+      oglavlenie.appendChild(ul);
+      glavnContainer.appendChild(zaglavie[0]);
+      glavnContainer.appendChild(osnovnoiContent);
+      document.body.appendChild(allDiv);
+      allDiv.appendChild(oglavlenie);
+      allDiv.appendChild(glavnContainer);
+      oglavlenie.className = "test";
+      allDiv.style.display = "flex";
+
+      let text = document.getElementsByTagName("h2");
+      for (let i = 0; i < text.length; i++) {
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        let ya = "ya" + i;
+        a.href = "#" + ya;
+        text[i].setAttribute("id", ya);
+        a.innerHTML = text[i].innerText;
+        li.appendChild(a);
+        ul.appendChild(li);
+      }
+
+      // zaglavie[0].style.color = "red";
+
+      // glavnContainer.className = "test";
+      // document.body.appendChild(zaglavie[0]);
+      //
+      // oglavlenie.style.height = "600px";
+      // oglavlenie.style.width = "600px";
+      // oglavlenie.style.backgroundColor = "yellow";
+      //
+      // // document.body.appendChild(zaglavie);
+      // document.glavnContainer.appendChild(oglavlenie, osnovnoiContent);
+      // glavnContainer.style.display = "flex";
+    </script>
+  </body>
+</html>

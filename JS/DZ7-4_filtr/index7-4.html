@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div>отфильтровать пользователей со статусом false</div>
+  <input id="one" type="checkbox" /></br></br>
+  <div>старше 29 лет включительно</div>
+  <input id="two" type="checkbox" /></br></br>
+  <div>у кого город киев</div>
+  <input id="three" type="checkbox" /></br></br>
+  <button id="but" type="submit">Применить фильтры</button>
+  <div id="rez"></div>
+
+
+    <!-- //         --взять массив пользователей
+    //             Создать три чекбокса.Каждый из них активирует фильтр для вышеуказаного массива.Фильтры могут работать как вместе так и по отдельности.
+    // 1й - отфильтровывает пользователей со статусом false(осталяет со статусом false)
+    //             2й - оставляет старше 29 лет включительно
+    //             3й - оставляет тех у кого город киев
+    //             Данные выводить в документ-->
+
+
+<script>
+//ЭТО СПОСОБ, КОГДА ФИЛЬТРЫ РАБОТАЮТ ОДНОВРЕМЕННО
+
+
+   let usersWithAddress = [
+        {
+          id: 1,
+          name: "vasya",
+          age: 31,
+          status: false,
+          address: { city: "Lviv", street: "Shevchenko", number: 16 },
+        },
+        {
+          id: 2,
+          name: "petya",
+          age: 30,
+          status: true,
+          address: { city: "Kyiv", street: "Shevchenko", number: 1 },
+        },
+        {
+          id: 3,
+          name: "kolya",
+          age: 29,
+          status: true,
+          address: { city: "Lviv", street: "Shevchenko", number: 121 },
+        },
+        {
+          id: 4,
+          name: "olya",
+          age: 28,
+          status: false,
+          address: { city: "Ternopil", street: "Shevchenko", number: 90 },
+        },
+        {
+          id: 5,
+          name: "max",
+          age: 30,
+          status: true,
+          address: { city: "Lviv", street: "Shevchenko", number: 115 },
+        },
+        {
+          id: 6,
+          name: "anya",
+          age: 31,
+          status: false,
+          address: { city: "Kyiv", street: "Shevchenko", number: 2 },
+        },
+        {
+          id: 7,
+          name: "oleg",
+          age: 28,
+          status: false,
+          address: { city: "Ternopil", street: "Shevchenko", number: 22 },
+        },
+        {
+          id: 8,
+          name: "andrey",
+          age: 29,
+          status: true,
+          address: { city: "Lviv", street: "Shevchenko", number: 43 },
+        },
+        {
+          id: 9,
+          name: "masha",
+          age: 30,
+          status: true,
+          address: { city: "Kyiv", street: "Shevchenko", number: 12 },
+        },
+        {
+          id: 10,
+          name: "mila",
+          age: 27,
+          status: false,
+          address: { city: "Lviv", street: "Shevchenko", number: 16 },
+        },
+        {
+          id: 11,
+          name: "miron",
+          age: 31,
+          status: true,
+          address: { city: "Ternopil", street: "Shevchenko", number: 121 },
+        },
+      ];
+   let rez = document.getElementById('rez');
+   let one = document.getElementById('one');
+   let two = document.getElementById('two');
+   let three = document.getElementById('three');      
+   let but = document.getElementById('but');
+
+
+  but.onclick = () => { 
+    rez.innerHTML = "";
+    let all = [];
+    let allView = [];
+
+      if (one.checked) {
+        if (two.checked) { 
+            if (three.checked) {
+                for (let i = 0; i < usersWithAddress.length; i++) {
+                  if (usersWithAddress[i].age >= 29 && !usersWithAddress[i].status && usersWithAddress[i].address.city === 'Kyiv') {
+                    all.push(usersWithAddress[i]);
+                  }}}
+            else {for (let i = 0; i < usersWithAddress.length; i++) 
+              {if (usersWithAddress[i].age >= 29 && !usersWithAddress[i].status) {
+              all.push(usersWithAddress[i])}}}}
+        else if (three.checked) {
+                for (let i = 0; i < usersWithAddress.length; i++) {
+                  if (!usersWithAddress[i].status && usersWithAddress[i].address.city === 'Kyiv') {
+                    all.push(usersWithAddress[i]);}}}
+        else {for (let i = 0; i < usersWithAddress.length; i++) {if(!usersWithAddress[i].status) {
+                          all.push(usersWithAddress[i])}}}}
+
+     else if (two.checked) {
+        if (three.checked) {
+          for (let i = 0; i < usersWithAddress.length; i++) {
+            if (usersWithAddress[i].age >= 29 && usersWithAddress[i].address.city === 'Kyiv') {
+              all.push(usersWithAddress[i]);
+            }
+          }
+        }
+        else {
+          for (let i = 0; i < usersWithAddress.length; i++) {
+            if (usersWithAddress[i].age >= 29) {
+              all.push(usersWithAddress[i])
+            }
+          }
+        }
+      }
+
+     else if (three.checked) {
+      for (let i = 0; i < usersWithAddress.length; i++) {
+        if (usersWithAddress[i].address.city === 'Kyiv') {
+          all.push(usersWithAddress[i]);
+        }
+      }
+    }
+   else { all = ""}          
+
+                          
+   rez.innerHTML = JSON.stringify(all)}
+
+    </script> 
+
+<!-- 
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+
+
+
+
+    <script> -->
+    <!-- // ЭТО СПОСОБ, КОГДА ФИЛЬТРЫ РАБОТАЮТ ПО ОТДЕЛЬНОСТИ -->
+        <!-- let usersWithAddress = [
+          {
+            id: 1,
+            name: "vasya",
+            age: 31,
+            status: false,
+            address: { city: "Lviv", street: "Shevchenko", number: 16 },
+          },
+          {
+            id: 2,
+            name: "petya",
+            age: 30,
+            status: true,
+            address: { city: "Kyiv", street: "Shevchenko", number: 1 },
+          },
+          {
+            id: 3,
+            name: "kolya",
+            age: 29,
+            status: true,
+            address: { city: "Lviv", street: "Shevchenko", number: 121 },
+          },
+          {
+            id: 4,
+            name: "olya",
+            age: 28,
+            status: false,
+            address: { city: "Ternopil", street: "Shevchenko", number: 90 },
+          },
+          {
+            id: 5,
+            name: "max",
+            age: 30,
+            status: true,
+            address: { city: "Lviv", street: "Shevchenko", number: 115 },
+          },
+          {
+            id: 6,
+            name: "anya",
+            age: 31,
+            status: false,
+            address: { city: "Kyiv", street: "Shevchenko", number: 2 },
+          },
+          {
+            id: 7,
+            name: "oleg",
+            age: 28,
+            status: false,
+            address: { city: "Ternopil", street: "Shevchenko", number: 22 },
+          },
+          {
+            id: 8,
+            name: "andrey",
+            age: 29,
+            status: true,
+            address: { city: "Lviv", street: "Shevchenko", number: 43 },
+          },
+          {
+            id: 9,
+            name: "masha",
+            age: 30,
+            status: true,
+            address: { city: "Kyiv", street: "Shevchenko", number: 12 },
+          },
+          {
+            id: 10,
+            name: "mila",
+            age: 27,
+            status: false,
+            address: { city: "Lviv", street: "Shevchenko", number: 16 },
+          },
+          {
+            id: 11,
+            name: "miron",
+            age: 31,
+            status: true,
+            address: { city: "Ternopil", street: "Shevchenko", number: 121 },
+          },
+        ];
+        let rez = document.getElementById('rez');
+        let one = document.getElementById('one');
+        let two = document.getElementById('two');
+        let three = document.getElementById('three');
+        let but = document.getElementById('but');
+    
+    
+        but.onclick = () => {
+            let all = [];
+          if (one.checked) all.push(usersWithAddress.filter(value => !value.status));
+          if (two.checked) all.push(usersWithAddress.filter(value => value.age >=29));
+          if (three.checked) all.push(usersWithAddress.filter(value => value.address.city === 'Kyiv'));
+          rez.innerHTML = "";
+          rez.innerHTML = JSON.stringify(all)
+        }
+    
+      </script> -->
